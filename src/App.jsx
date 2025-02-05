@@ -1,8 +1,10 @@
-import Faq from "./components/Faq";
+import React from "react";
+import './App.css';
+import Faq from "./components/FAQ";
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Faq />
     </div>
   )
