@@ -8,6 +8,7 @@ function Sidebar() {
          <ul className="sidebar-list">
             {faqData.map((category) => (
                <li key={category.menu} className="sidebar-item">
+                  <img src="../assets/bullet.png" alt=""/>
                   <a href="#" className="sidebar-link">{category.menu}</a>
                </li>
             ))}

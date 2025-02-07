@@ -11,8 +11,8 @@ function Faq() {
                <h2 className="faq-category-title">{category.menu}</h2>
                {category.fragen.map((item) => (
                   <div key={item.id} className="faq-item">
-                     <p className="faq-question"><strong>Q: {item.frage}</strong></p>
-                     <p className="faq-answer">A: {item.antwort}</p>
+                     <p className="faq-question"><strong>{item.frage}</strong></p>
+                     <p className="faq-answer">{item.antwort}</p>
                   </div>
                ))}
             </div>
