@@ -5,7 +5,6 @@ import './Sidebar.css';
 function Sidebar() {
    return (
       <div className="sidebar">
-         <h2 className="sidebar-title">Categories</h2>
          <ul className="sidebar-list">
             {faqData.map((category) => (
                <li key={category.menu} className="sidebar-item">
