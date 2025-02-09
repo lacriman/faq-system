@@ -17,18 +17,19 @@ function Faq({ selectedCategory }) {
                <div key={category.menu} className="faq-category">
                   <h2 className="faq-category-title">{category.menu}</h2>
                   {category.fragen.map((question) => (
-                     <div key={question.id} className="faq-item">
-                        <div
-                           className="faq-question"
-                           onClick={() => handleQuestionClick(question.id)}
-                        >
+                     <div
+                        key={question.id}
+                        className="faq-item"
+                        onClick={() => handleQuestionClick(question.id)}
+                     >
+                        <div className="faq-question">
                            {question.frage}
                         </div>
 
                         {/* Show answer if the question is expanded */}
                         {expandedQuestionId === question.id && (
                            <div className="faq-answer">
-                              <div dangerouslySetInnerHTML={{__html: question.antwort}} />
+                              <div dangerouslySetInnerHTML={{ __html: question.antwort }} />
                            </div>
                         )}
                      </div>
