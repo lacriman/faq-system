@@ -24,6 +24,13 @@ function Faq({ selectedCategory }) {
                         >
                            {question.frage}
                         </div>
+
+                        {/* Show answer if the question is expanded */}
+                        {expandedQuestionId === question.id && (
+                           <div className="faq-answer">
+                              <div dangerouslySetInnerHTML={{__html: question.antwort}} />
+                           </div>
+                        )}
                      </div>
                   ))}
                </div>
