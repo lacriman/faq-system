@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import faqData from "../data/faqData";
 import './Sidebar.css';
+import faqData from "../data/faqData";
 
 function Sidebar({ onSelectCategory }) {
    const [activeCategory, setActiveCategory] = useState(faqData[0]?.menu);

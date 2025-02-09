@@ -4,6 +4,12 @@ import faqData from "../data/faqData";
 
 function Faq({ selectedCategory }) {
    const [expandedQuestionId, setExpandedQuestionId] = useState(null);
+   const [activeCategory, setActiveCategory] = useState(faqData[0]?.menu)
+
+   const handleCategoryClick = (category) => {
+      setActiveCategory(category);
+      selectedCategory(category);
+   };
 
    const handleQuestionClick = (questionId) => {
       setExpandedQuestionId((prevId) => (prevId === questionId ? null : questionId));
@@ -23,6 +29,11 @@ function Faq({ selectedCategory }) {
                         onClick={() => handleQuestionClick(question.id)}
                      >
                         <div className="faq-question">
+                           <img
+                              src={expandedQuestionId === question.id ? '/assets/btn_minus.png' : '/assets/btn_plus.png'}
+                              alt="faq-icon"
+                              className="faq-icon"
+                           />
                            {question.frage}
                         </div>
 
