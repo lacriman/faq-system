@@ -6,6 +6,10 @@
 }
 
 .sidebar-item {
+   display: flex;
+   align-items: start;
+   gap: 15px;
+
    border-top: 1px solid #B1D4FE;
    padding: 8px 0;
    text-decoration: none;
@@ -17,9 +21,10 @@
 }
 
 .sidebar-item img {
-   height: 10px;
+   height: 20px;
 }
 .sidebar-item a {
+   line-height: 1.2;
    color: #318cfc;
    transition: .3s;
 }
