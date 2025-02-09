@@ -34,24 +34,27 @@ function Faq({ selectedCategory }) {
                   {category.fragen.map((question) => (
                      <div
                         key={question.id}
-                        className="faq-item"
+                        className={`faq-item ${expandedQuestionId === question.id ? 'active' : ''}`}  // Added 'active' class based on expanded state
                         onClick={(event) => handleQuestionClick(event, question.id)}
                      >
-                        <div className="faq-question">
-                           <img
-                              src={expandedQuestionId === question.id ? '/assets/btn_minus.png' : '/assets/btn_plus.png'}
-                              alt="faq-icon"
-                              className="faq-icon"
-                           />
-                           {question.frage}
-                        </div>
+                        <img
+                           src={expandedQuestionId === question.id ? '/assets/btn_minus.png' : '/assets/btn_plus.png'}
+                           alt="faq-icon"
+                           className="faq-icon"
+                        />
 
-                        {/* Show answer if the question is expanded */}
-                        {expandedQuestionId === question.id && (
-                           <div className="faq-answer">
-                              <div dangerouslySetInnerHTML={{ __html: question.antwort }} />
+                        <div className="faq-content">
+                           <div className="faq-question">
+                              {question.frage}
                            </div>
-                        )}
+
+                           {/* Show answer if the question is expanded */}
+                           {expandedQuestionId === question.id && (
+                              <div className="faq-answer">
+                                 <div dangerouslySetInnerHTML={{ __html: question.antwort }} />
+                              </div>
+                           )}
+                        </div>
                      </div>
                   ))}
                </div>

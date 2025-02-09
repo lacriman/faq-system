@@ -16,12 +16,20 @@
 
 /* Styles for each FAQ item */
 .faq-item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 15px;
   padding: 10px;
   margin-bottom: 6px;
   background-color: #E0EDFD;
   color: #318cfc;
   border-top-right-radius: 10px;
+  line-height: 1.2;
   
+}
+.faq-item img {
+  align-self: start;
 }
 
 /* Styles for the question */
@@ -36,9 +44,17 @@
 
 /* Styles for the answer */
 .faq-answer {
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .faq-icon {
   height: 20px;
+}
+.faq-item.active .faq-question,
+.faq-item.active .faq-answer {
+  color: black;
+}
+
+.faq-item.active {
+  background-color: #CADFFB;
 }
