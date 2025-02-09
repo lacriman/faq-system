@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import './Faq.css';
 import faqData from "../data/faqData";
+import AccordionItem from "./AccordionItem";
 
 function Faq({ selectedCategory }) {
    const [expandedQuestionId, setExpandedQuestionId] = useState(null);
-   const [activeCategory, setActiveCategory] = useState(faqData[0]?.menu)
-
-   const handleCategoryClick = (category) => {
-      setActiveCategory(category);
-      selectedCategory(category);
-   };
 
    const handleQuestionClick = (event, questionId) => {
       // Check if text is being selected. If text is selected, we don't want to toggle the question
@@ -32,30 +27,12 @@ function Faq({ selectedCategory }) {
                <div key={category.menu} className="faq-category">
                   <h2 className="faq-category-title">{category.menu}</h2>
                   {category.fragen.map((question) => (
-                     <div
+                     <AccordionItem
                         key={question.id}
-                        className={`faq-item ${expandedQuestionId === question.id ? 'active' : ''}`}  // Added 'active' class based on expanded state
-                        onClick={(event) => handleQuestionClick(event, question.id)}
-                     >
-                        <img
-                           src={expandedQuestionId === question.id ? '/assets/btn_minus.png' : '/assets/btn_plus.png'}
-                           alt="faq-icon"
-                           className="faq-icon"
-                        />
-
-                        <div className="faq-content">
-                           <div className="faq-question">
-                              {question.frage}
-                           </div>
-
-                           {/* Show answer if the question is expanded */}
-                           {expandedQuestionId === question.id && (
-                              <div className="faq-answer">
-                                 <div dangerouslySetInnerHTML={{ __html: question.antwort }} />
-                              </div>
-                           )}
-                        </div>
-                     </div>
+                        question={question}
+                        expandedQuestionId={expandedQuestionId}
+                        onClick={handleQuestionClick}
+                     />
                   ))}
                </div>
             ))}
