@@ -11,7 +11,16 @@ function Faq({ selectedCategory }) {
       selectedCategory(category);
    };
 
-   const handleQuestionClick = (questionId) => {
+   const handleQuestionClick = (event, questionId) => {
+      // Check if text is being selected. If text is selected, we don't want to toggle the question
+      if (window.getSelection().toString().length > 0) {
+         return;
+      }
+
+      // Prevent the click event from bubbling up (this avoids collapsing when clicking inside the question)
+      event.stopPropagation();
+
+      // Toggle the expanded question
       setExpandedQuestionId((prevId) => (prevId === questionId ? null : questionId));
    };
 
@@ -26,7 +35,7 @@ function Faq({ selectedCategory }) {
                      <div
                         key={question.id}
                         className="faq-item"
-                        onClick={() => handleQuestionClick(question.id)}
+                        onClick={(event) => handleQuestionClick(event, question.id)}
                      >
                         <div className="faq-question">
                            <img
