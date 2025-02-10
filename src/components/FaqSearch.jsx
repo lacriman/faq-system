@@ -2,22 +2,42 @@ import React, { useState } from "react";
 import faqData from "../data/faqData";
 import './FaqSearch.css';
 
-function FaqSearch() {
+function FaqSearch({ onSelectQuestion }) { 
   const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  const filterQuestions = () => {
+    const filteredQuestions = [];
+    faqData.forEach(category => {
+      category.fragen.forEach(question => {
+        if (question.frage.toLowerCase().includes(searchTerm.toLowerCase())) {
+          filteredQuestions.push({ ...question, category: category.menu }); 
+        }
+      });
+    });
+    return filteredQuestions.slice(0, 6);
+  };
+
   const handleChange = (event) => {
-    // event.target.value gives you the current value of the input field.
-    // setSearchTerm() updates the state with the new value.
     setSearchTerm(event.target.value);
+    setSuggestions(filterQuestions());
   };
 
   const handleSearch = () => {
-    console.log("Search Term:", searchTerm);
+    if (suggestions.length > 0) {
+      const firstSuggestion = suggestions[0];
+      onSelectQuestion(firstSuggestion.category, firstSuggestion.id); 
+    }
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleSearch();
     }
+  };
+
+  const handleSuggestionClick = (category, questionId) => {
+    onSelectQuestion(category, questionId);
   };
 
   return (
@@ -32,9 +52,27 @@ function FaqSearch() {
           onKeyDown={handleKeyPress}
         />
         <button onClick={handleSearch} id="search-button">
-          <img src="/assets/btn_suche.png" alt="" />
+          <img src="/assets/btn_suche.png" alt="search button" />
         </button>
       </div>
+      
+      {searchTerm && (
+        <div className="suggestions">
+          {suggestions.length > 0 ? (
+            suggestions.map((suggestion) => (
+              <div
+                key={suggestion.id}
+                className="suggestion-item"
+                onClick={() => handleSuggestionClick(suggestion.category, suggestion.id)}  
+              >
+                {suggestion.frage}
+              </div>
+            ))
+          ) : (
+            <div>No suggestions found</div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

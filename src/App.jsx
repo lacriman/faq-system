@@ -8,9 +8,16 @@ import FaqSearch from "./components/FaqSearch";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(faqData[0]?.menu || null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState(null);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
+    setSelectedQuestionId(null);
+  };
+
+  const handleSelectQuestion = (category, questionId) => {
+    setSelectedCategory(category);
+    setSelectedQuestionId(questionId);
   };
 
   return (
@@ -19,9 +26,9 @@ function App() {
       <div className="content">
         <div className="left-section">
           <Sidebar onSelectCategory={handleCategorySelect} />
-          <FaqSearch />
+          <FaqSearch onSelectQuestion={handleSelectQuestion} />
         </div>
-        <Faq selectedCategory={selectedCategory} />
+        <Faq selectedCategory={selectedCategory} selectedQuestionId={selectedQuestionId} />
       </div>
     </div>
   );
