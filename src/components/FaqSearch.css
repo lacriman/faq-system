@@ -1,0 +1,39 @@
+.search-container {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   margin-top: 20px;
+   padding: 15px 20px;
+   border-radius: 15px;
+   background-color: #E0EDFD;
+}
+
+.search-title {
+   font-size: 18px;
+}
+
+.search-content {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+}
+
+#search-input {
+   max-width: 200px;
+   padding: 15px 5px;
+   height: 25px;
+   font-size: 19px;
+   color: gray;
+}
+
+#search-input:focus{
+   outline: none;
+}
+
+#search-button img{
+   height: 25px;
+}
+
+#search-button img:hover {
+   cursor: pointer;
+}
